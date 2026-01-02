@@ -26,8 +26,14 @@ class ListArray : public List<T>{
 			max = new_size;
 		}
 	public:
-		ListArray();
-		~ListArray();
+		ListArray(){
+			max=MINSIZE;
+			n=0;
+			arr=new T[max];
+		}
+		~ListArray(){
+			delete[] arr;
+		}
 		T operator[](int pos){
 			if (pos >=0 || pos < 0)
 				return pos;
@@ -36,7 +42,7 @@ class ListArray : public List<T>{
 		}
 		friend std::ostream& operator<<(std::ostream &out, const ListArray<T> &list){
 			out<<"[";
-			for(int i=0;list.n;i++){
+			for(int i=0;i<list.n;i++){
 				out<<list.arr[i];
 				if(i<list.n-1);
 				out<<",";
@@ -61,7 +67,7 @@ class ListArray : public List<T>{
 		void prepend(T e)override{
 			insert(0, e);
 		}
-		T remove(int pos){
+		T remove(int pos) override{
 			if(pos<0 || pos>=n){
 				throw std::out_of_range("Posición invalida en remove()");}
 			T removed = arr[pos];
@@ -71,6 +77,24 @@ class ListArray : public List<T>{
 			if(n < max/4 && max/2 >=MINSIZE){
 				resize(max/2);}
 			return removed;
+		}
+		bool empty()const override{
+			return n==0;
+		}
+		int size() const override{
+			return n;
+		}
+		T get(int pos)const override{
+			if(pos<0 || pos>=n){
+				throw std::out_of_range("Posicion invalida en get()");
+			}
+			return arr[pos];
+		}
+		int search(T e)const override{
+			for(int i=0;i<n;i++){
+				return i;
+			}
+			return -1;
 		}
 	
 };
