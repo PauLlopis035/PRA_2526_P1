@@ -1,6 +1,9 @@
 bin/testListArray: testListArray.cpp listArray.h List.h
 	mkdir -p bin
 	g++ -o bin/testListArray testListArray.cpp listArray.h
+bin/testNode: testNode.cpp Node.h
+	mkdir -p bin
+	g++ -o bin/testNode testNode.cpp Node.h
 
 Point2D.o: Point2D.h Point2D.cpp
 	g++ -c Point2D.cpp
