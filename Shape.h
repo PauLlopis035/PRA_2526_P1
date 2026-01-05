@@ -9,12 +9,8 @@ class Shape{
 	protected:
 		std::string color;
 	public:
-		Shape(){
-			color="red";
-		};
-		Shape(std::string color){
-			this->color=color;
-		};
+		Shape();
+		Shape(std::string color);
 		std::string get_color() const;
 		void set_color(std::string c);
 		virtual double area()const=0;
