@@ -5,7 +5,7 @@
 #include "Shape.h"
 #include <ostream>
 
-class Circle :: public Shape{
+class Circle : public Shape{
 	private:
 		Point2D center;
 		double radius;
