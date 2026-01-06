@@ -16,6 +16,13 @@ Circle::Circle(std::string color, Point2D center, double radius){
 Point2D Circle::get_center()const{
 	return center;
 }
+void Circle::set_center(Point2D p){
+	center.x=p.x;
+	center.y=p.y;
+}
+double Circle::get_radius()const{
+	return radius;
+}
 void Circle::set_radius(double r){
 	radius = r;
 }
