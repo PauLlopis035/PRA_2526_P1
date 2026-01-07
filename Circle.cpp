@@ -1,24 +1,19 @@
 #include "Circle.h"
-#include <ostream>
+#include <iostream>
 #include <cmath>
 
-Circle::Circle(){
-	set_color("red");
-	center.x=0;
-	center.y=0;
-	radius = 1;
-}
-Circle::Circle(std::string color, Point2D center, double radius){
-	this->color = color;
-	this->center=center;
-	this->radius = radius;
+Circle::Circle() : Shape("red"), center(0,0), radius(1){}
+
+Circle::Circle(std::string color, Point2D center, double radius) : Shape(color), center(0,0), radius(radius){
+	if (radius <=0){
+		throw std::invalid_argument("El radio debe ser positivo");
+	}
 }
 Point2D Circle::get_center()const{
 	return center;
 }
 void Circle::set_center(Point2D p){
-	center.x=p.x;
-	center.y=p.y;
+	center = p;
 }
 double Circle::get_radius()const{
 	return radius;
@@ -27,13 +22,14 @@ void Circle::set_radius(double r){
 	radius = r;
 }
 std::ostream& operator<<(std::ostream &out, const Circle &c){
-	out << "[Circle: color = " << c.color << ";center = " << c.center << "; radius =" << c.radius<< "]" << std::endl;
+	out << "Circle(color=" << c.color << ", center=(" << c.center.x << "," << c.center.y << "), radius=" << c.radius<< ")" << std::endl;
+	c.print();
 	return out;
 }
 
 
 double Circle::area()const{
-	return 3.14159 * radius * radius;
+	return 3.14159 * std::pow(radius, 2);
 }
 double Circle::perimeter()const{
 	return 2 * 3.14159 * radius;
